@@ -31,8 +31,10 @@ Route::get('messages/details/{id}', [FrontendController::class, 'messagesdetails
 // Profile view group Start
 Route::middleware(['auth'])->group(function () {
    Route::get('profileview', [ProfileController::class, 'profileview'])->name('profileview.view');
-   Route::post('profileview/changename', [ProfileController::class, 'changename'])->name('profileview.changename ');
+   Route::post('profileview/changename', [ProfileController::class, 'changename'])->name('profileview.changename');
+   Route::post('profileview/changepassword', [ProfileController::class, 'changepassword'])->name('profileview.changepassword');
 });
+
 //End Profile view group
 Route::get('/profile', [FrontendController::class, 'messagesdetails'])->name('messagesdetails ');
 
