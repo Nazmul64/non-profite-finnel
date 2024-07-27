@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +28,14 @@ Route::get('force/delete/{id}', [FrontendController::class, 'forcedelete'])->nam
 Route::get('restore/{id}', [FrontendController::class, 'restore'])->name('restore');
 Route::get('messages/details/{id}', [FrontendController::class, 'messagesdetails'])->name('messagesdetails ');
 
+// Profile view group Start
+Route::middleware(['auth'])->group(function () {
+   Route::get('profileview', [ProfileController::class, 'profileview'])->name('profileview.view');
+   Route::post('profileview/changename', [ProfileController::class, 'changename'])->name('profileview.changename ');
+});
+//End Profile view group
+Route::get('/profile', [FrontendController::class, 'messagesdetails'])->name('messagesdetails ');
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
